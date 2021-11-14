@@ -2,5 +2,5 @@ node_modules/
 public/
 .firebase/
 development/
-*-debug.log
+*-debug*.log
 functions/src/Config.ts
