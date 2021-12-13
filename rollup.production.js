@@ -74,6 +74,7 @@ function getES5() {
         ]
     }
 }
+
 let entryChunkES5;
 let entryChunk2015;
 let entryChunk2016;
@@ -119,64 +120,7 @@ function template({files}) {
   <body>
     <alt-om-film></alt-om-film>
     <script>
-    function testCustomElements() {
-        if (!window.customElements) {
-            loadCustomElements();
-        } else {
-            testFetch();
-        }
-    }
-    function loadCustomElements() {
-        var ce = document.createElement('script');
-        ce.src = './ce.js';
-        ce.onload = testFetch;
-        document.body.appendChild(ce);
-    }
-    function testFetch() {
-        if (!window.fetch) {
-            loadFetch();
-        } else {
-            resolveBundle();
-        }
-    }
-    function loadFetch() {
-        var fe = document.createElement('script');
-        fe.src = './fetch.js';
-        fe.onload = resolveBundle;
-        document.body.appendChild(fe);
-    }
-    function resolveBundle() {
-        var bundleScript = document.createElement('script');
-        bundleScript.type = 'module';
-        var src;
-        if (typeof Object.fromEntries === 'function') {
-            src = '` + entryChunk2019 + `';
-        } else if (window.Promise !== undefined && typeof window.Promise.prototype.finally === 'function' ) {
-            src = '` + entryChunk2018 + `';
-        } else if (typeof String.prototype.padStart === 'function') {
-            src = '` + entryChunk2017 + `';
-        } else if (typeof Array.prototype.includes === 'function') {
-            src = '` + entryChunk2016 + `';
-        } else if(window.Promise !== undefined) {
-            src = '` + entryChunk2015 + `';
-        } else {
-            src = '` + entryChunkES5 + `';
-            bundleScript.type = '';
-        }
-        bundleScript.src = src;
-        document.body.appendChild(bundleScript);
-    }
-    if (typeof window.CustomEvent !== 'function') {
-        function CustomEvent (event, params) {
-            params = params || { bubbles: false, cancelable: false, detail: undefined };
-            var evt = document.createEvent('CustomEvent');
-            evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-            return evt;
-        }
-        CustomEvent.prototype = window.Event.prototype;
-        window.CustomEvent = CustomEvent;
-    }
-    testCustomElements();
+        function c(){if(window.fetch)d();else{var b=document.createElement("script");b.src="./fetch.js";b.onload=d;document.body.appendChild(b)}}function d(){var b=document.createElement("script");b.type="module";if("function"===typeof Object.fromEntries)var a="` + entryChunk2019 + `";else void 0!==window.Promise&&"function"===typeof window.Promise.prototype.finally?a="` + entryChunk2018 + `":"function"===typeof String.prototype.padStart?a="` + entryChunk2017 + `":"function"===typeof Array.prototype.includes?a="` + entryChunk2016 + `":void 0!==window.Promise?a="` + entryChunk2015 + `":(a="` + entryChunkES5 + `",b.type="");b.src=a;document.body.appendChild(b)}if("function"!==typeof window.CustomEvent){var CustomEvent=function(b,a){a=a||{bubbles:!1,cancelable:!1,detail:void 0};var f=document.createEvent("CustomEvent");f.initCustomEvent(b,a.bubbles,a.cancelable,a.detail);return f};CustomEvent.prototype=window.Event.prototype;window.CustomEvent=CustomEvent}if(window.customElements)c();else{var e=document.createElement("script");e.src="./ce.js";e.onload=c;document.body.appendChild(e)};
     </script>
   </body>
 </html>`
